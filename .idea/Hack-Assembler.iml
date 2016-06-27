@@ -8,6 +8,12 @@
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/parser.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/parser.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/misc.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/workspace.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/modules.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/encodings.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/vcs.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/Hack-Assembler.iml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/code.cpp" isTestSource="false" />
     </content>
