@@ -2,12 +2,12 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/symbolTable.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/code.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/symbolTable.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SymbolTable.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Code.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SymbolTable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/parser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/parser.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Parser.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Parser.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/misc.xml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/workspace.xml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/modules.xml" isTestSource="false" />
@@ -15,7 +15,7 @@
       <sourceFolder url="file://$MODULE_DIR$/.idea/vcs.xml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/Hack-Assembler.iml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/code.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Code.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

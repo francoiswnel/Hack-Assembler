@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-class parser {
+class Parser {
 
 };
 

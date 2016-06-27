@@ -11,12 +11,12 @@ set(SOURCE_FILES
     .idea/vcs.xml
     .idea/workspace.xml
     CMakeLists.txt
-    code.cpp
-    code.h
+        Code.cpp
+        Code.h
     main.cpp
-    parser.cpp
-    parser.h
-    symbolTable.cpp
-    symbolTable.h)
+        Parser.cpp
+        Parser.h
+        SymbolTable.cpp
+        SymbolTable.h)
 
 add_executable(Hack_Assembler ${SOURCE_FILES})

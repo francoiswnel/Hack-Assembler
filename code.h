@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-class code {
+class Code {
 
 };
 
