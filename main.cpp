@@ -3,9 +3,9 @@
  */
 
 #include <iostream>
-#include "parser.h"
-#include "code.h"
-#include "symbolTable.h"
+#include "Parser.h"
+#include "Code.h"
+#include "SymbolTable.h"
 
 using namespace std;
 
