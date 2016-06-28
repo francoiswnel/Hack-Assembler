@@ -21,10 +21,3 @@ bool SymbolTable::contains(string symbol) {
 int SymbolTable::getAddress(string symbol) {
     return 0;
 }
-
-
-
-
-
-
-
