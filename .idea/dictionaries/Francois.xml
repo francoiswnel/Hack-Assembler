@@ -2,6 +2,7 @@
   <dictionary name="Francois">
     <words>
       <w>dest</w>
+      <w>symboltable</w>
     </words>
   </dictionary>
 </component>

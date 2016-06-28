@@ -11,8 +11,8 @@ set(SOURCE_FILES
     .idea/vcs.xml
     .idea/workspace.xml
     CMakeLists.txt
-        Code.cpp
-        Code.h
+        CodeTranslator.cpp
+        CodeTranslator.h
     main.cpp
         Parser.cpp
         Parser.h

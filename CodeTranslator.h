@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Code {
+class CodeTranslator {
 public:
     string dest(string destMnemonic);
     // Returns the binary code of the destination mnemonic
