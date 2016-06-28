@@ -6,10 +6,20 @@
 #define HACK_ASSEMBLER_PARSER_H
 
 #include <iostream>
+#include <fstream>
+
 using namespace std;
 
 class Parser {
-
+public:
+    Parser(ifstream& fin);
+    bool hasMoreCommands();
+    void advance();
+    char commandType();
+    string symbol();
+    string destM();
+    string compM();
+    string jumpM();
 };
 
 #endif //HACK_ASSEMBLER_PARSER_H
