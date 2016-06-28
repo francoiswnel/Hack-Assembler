@@ -13,13 +13,37 @@ using namespace std;
 class Parser {
 public:
     Parser(ifstream& fin);
+    // Opens input file, filename provided via command line argument.
+
     bool hasMoreCommands();
+    // Returns true if the file contains commands that still need to be parsed,
+    // returns false otherwise.
+
     void advance();
+    // Reads the next command to be parsed and sets it as the current command.
+    // Should only be called if hasMoreCommands() returns true.
+
     char commandType();
+    // Returns the type of the current command.
+    // Returns 'A' for an a command.
+    // Returns 'C' for a c command.
+    // Returns 'L' for a symbol/pseudo command.
+
     string symbol();
+    // Returns the symbol or decimal value of the current command.
+    // Should only be called if commandType() returns 'A' or 'L'.
+
     string destM();
+    // Returns the destination mnemonic of the current command.
+    // Should only be called if commandType() returns 'C'.
+
     string compM();
+    // Returns the computation mnemonic of the current command.
+    // Should only be called if commandType() returns 'C'.
+
     string jumpM();
+    // Returns the jump mnemonic of the current command.
+    // Should only be called if commandType() returns 'C'.
 };
 
 #endif //HACK_ASSEMBLER_PARSER_H
