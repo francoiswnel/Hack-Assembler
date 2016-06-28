@@ -19,4 +19,4 @@ set(SOURCE_FILES
         SymbolTable.cpp
         SymbolTable.h)
 
-add_executable(Hack_Assembler ${SOURCE_FILES})
+add_executable(chasm ${SOURCE_FILES})

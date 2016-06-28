@@ -5,3 +5,26 @@
 #include "SymbolTable.h"
 
 using namespace std;
+
+SymbolTable::SymbolTable() {
+
+}
+
+void SymbolTable::addEntry(string symbol, int address) {
+
+}
+
+bool SymbolTable::contains(string symbol) {
+    return false;
+}
+
+int SymbolTable::getAddress(string symbol) {
+    return 0;
+}
+
+
+
+
+
+
+

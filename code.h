@@ -6,10 +6,14 @@
 #define HACK_ASSEMBLER_CODE_H
 
 #include <iostream>
+
 using namespace std;
 
 class Code {
-
+public:
+    string dest(string destMnemonic);
+    string comp(string compMnemonic);
+    string jump(string jumpMnemonic);
 };
 
 #endif //HACK_ASSEMBLER_CODE_H
