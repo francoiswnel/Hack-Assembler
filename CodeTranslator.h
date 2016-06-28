@@ -15,10 +15,10 @@ public:
     // Returns the binary code of the destination mnemonic
     // as a string containing 3 bits.
 
-    string comp(string compMnemonic);
+    string comp(string compMnemonic, unsigned long& lineNr);
     // Returns the binary code of the computation mnemonic
     // as a string containing 7 bits.
-
+    // Line number is passed for use in an error message.
 
     string jump(string jumpMnemonic);
     // Returns the binary code of the jump mnemonic

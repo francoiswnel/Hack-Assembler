@@ -16,6 +16,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
     string inputFileName, outputFileName, currentOutput;
     ofstream fout;
+    unsigned long lineNumber;
 
     if (argc < 2 || argc > 3) {
         cout << "Usage: " << argv[0] << " <inputfilename.asm> <(optional) outputfilename.hack>" << endl;
@@ -37,9 +38,10 @@ int main(int argc, char *argv[]) {
 
     Parser assemblySource(inputFileName);
     CodeTranslator translator;
+    lineNumber = 0;
 
     while (true) {
-        assemblySource.advance();
+        assemblySource.advance(lineNumber);
 
         if (!assemblySource.hasMoreCommands()) {
             break;
@@ -52,7 +54,7 @@ int main(int argc, char *argv[]) {
         }
         else if (assemblySource.commandType() == 'C') {
             fout << "111";
-            fout << translator.comp(assemblySource.compM());
+            fout << translator.comp(assemblySource.compM(), lineNumber);
             fout << translator.dest(assemblySource.destM());
             fout << translator.jump(assemblySource.jumpM());
             fout << endl;

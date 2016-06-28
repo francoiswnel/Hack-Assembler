@@ -13,16 +13,18 @@ using namespace std;
 
 class Parser {
 public:
-    Parser(string fileName);
+    Parser(string& fileName);
     // Opens input file
 
     bool hasMoreCommands();
     // Returns true if the file contains commands that still need to be parsed,
     // returns false otherwise.
 
-    void advance();
+    void advance(unsigned long& lineNr);
     // Reads the next command to be parsed and sets it as the current command.
     // Should only be called if hasMoreCommands() returns true.
+    // Line number is incremented for each line read,
+    // and is used for error information.
 
     char commandType();
     // Returns the type of the current command.

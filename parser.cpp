@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Parser::Parser(string fileName) {
+Parser::Parser(string& fileName) {
     fin.open(fileName);
     if (fin.fail()) {
         cout << fileName << " not found." << endl;
@@ -18,7 +18,7 @@ bool Parser::hasMoreCommands() {
     return !fin.eof();
 }
 
-void Parser::advance() {
+void Parser::advance(unsigned long& lineNr) {
     string currentLine;
     unsigned long commentPos;
     bool commandFound;
@@ -26,6 +26,8 @@ void Parser::advance() {
     commandFound = false;
 
     while (!commandFound && getline(fin, currentLine)) {
+        lineNr++;
+
         // Remove whitespace
         currentLine.erase(remove_if(currentLine.begin(), currentLine.end(), ::isspace), currentLine.end());
 

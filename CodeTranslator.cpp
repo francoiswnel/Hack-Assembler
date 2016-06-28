@@ -31,7 +31,7 @@ string CodeTranslator::dest(string destMnemonic) {
     return "000";
 }
 
-string CodeTranslator::comp(string compMnemonic) {
+string CodeTranslator::comp(string compMnemonic, unsigned long& lineNr) {
     if (compMnemonic.compare("0") == 0) {
         return "0101010";
     }
@@ -117,7 +117,7 @@ string CodeTranslator::comp(string compMnemonic) {
         return "1010101";
     }
 
-    cout << "Invalid comp syntax." << endl;
+    cout << "Invalid syntax in computation statement at line: " << lineNr << endl;
     exit(1);
 }
 
