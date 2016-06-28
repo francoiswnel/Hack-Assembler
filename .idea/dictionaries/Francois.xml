@@ -2,6 +2,9 @@
   <dictionary name="Francois">
     <words>
       <w>dest</w>
+      <w>fout</w>
+      <w>inputfilename</w>
+      <w>outputfilename</w>
       <w>symboltable</w>
     </words>
   </dictionary>

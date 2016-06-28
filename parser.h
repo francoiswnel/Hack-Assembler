@@ -7,13 +7,14 @@
 
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
 class Parser {
 public:
-    Parser(ifstream& fin);
-    // Opens input file, filename provided via command line argument.
+    Parser(string fileName);
+    // Opens input file
 
     bool hasMoreCommands();
     // Returns true if the file contains commands that still need to be parsed,
@@ -44,6 +45,9 @@ public:
     string jumpM();
     // Returns the jump mnemonic of the current command.
     // Should only be called if commandType() returns 'C'.
+private:
+    ifstream fin;
+    string currentCommand;
 };
 
 #endif //HACK_ASSEMBLER_PARSER_H
