@@ -55,6 +55,7 @@ char Parser::commandType() {
         case '-':
         case '!':
             return 'C';
+        case '(':
         default:
             return 'L';
     }
