@@ -14,9 +14,10 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    string inputFileName, outputFileName, currentOutput;
+    string inputFileName, outputFileName, previousSymbol;
     ofstream fout;
-    unsigned long lineNumber;
+    int lineNumberROM, newAddress;
+    unsigned long lineNumberSource;
 
     if (argc < 2 || argc > 3) {
         cout << "Usage: " << argv[0] << " <inputfilename.asm> <(optional) outputfilename.hack>" << endl;
@@ -36,12 +37,38 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    Parser assemblySource(inputFileName);
-    CodeTranslator translator;
-    lineNumber = 0;
+    // First pass: Generate symbol table
+    Parser symbolSource(inputFileName);
+    SymbolTable symbolTable;
+
+    lineNumberSource = 0;
+    lineNumberROM = 0;
+    newAddress = 16;
 
     while (true) {
-        assemblySource.advance(lineNumber);
+        symbolSource.advance(lineNumberSource);
+
+        if (!symbolSource.hasMoreCommands()) {
+            break;
+        }
+
+        if (symbolSource.commandType() == 'A' || symbolSource.commandType() == 'C') {
+            lineNumberROM++;
+        }
+
+        if (symbolSource.commandType() == 'L' && !symbolTable.contains(symbolSource.symbol())) {
+            symbolTable.addEntry(symbolSource.symbol(), lineNumberROM);
+        }
+    }
+
+    // Second pass: Assemble machine code
+    Parser assemblySource(inputFileName);
+    CodeTranslator translator;
+
+    lineNumberSource = 0;
+
+    while (true) {
+        assemblySource.advance(lineNumberSource);
 
         if (!assemblySource.hasMoreCommands()) {
             break;
@@ -49,12 +76,20 @@ int main(int argc, char *argv[]) {
 
         if (assemblySource.commandType() == 'A') {
             fout << "0";
-            fout << bitset<15>(stoull(assemblySource.symbol(), nullptr)).to_string();
+            if (assemblySource.symbol().find_first_not_of("0123456789") == string::npos) {
+                fout << bitset<15>(stoull(assemblySource.symbol(), nullptr)).to_string();
+            }
+            else {
+                if (!symbolTable.contains(assemblySource.symbol())) {
+                    symbolTable.addEntry(assemblySource.symbol(), newAddress++);
+                }
+                fout << bitset<15>(static_cast<unsigned long long>(symbolTable.getAddress(assemblySource.symbol()))).to_string();
+            }
             fout << endl;
         }
         else if (assemblySource.commandType() == 'C') {
             fout << "111";
-            fout << translator.comp(assemblySource.compM(), lineNumber);
+            fout << translator.comp(assemblySource.compM(), lineNumberSource);
             fout << translator.dest(assemblySource.destM());
             fout << translator.jump(assemblySource.jumpM());
             fout << endl;
