@@ -1,4 +1,4 @@
 # Hack-Assembler
 An assembler for the Hack language implemented in C++.
 
-Current state: The parser and code translator modules are working, and can assemble symbol-less files. The symbol table module will be implemented soon. Documentation will be updated soon.
+Current state: It works! The assembler is fully functional and can process symbols.  Documentation will be updated soon.
