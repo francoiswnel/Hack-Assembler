@@ -15,6 +15,7 @@ SymbolTable::SymbolTable() {
         table[i] = NULL;
     }
 
+    // Populate the table with predefined symbols.
     addEntry("SP", 0);
     addEntry("LCL", 1);
     addEntry("ARG", 2);
@@ -43,12 +44,15 @@ SymbolTable::SymbolTable() {
 void SymbolTable::addEntry(string symbol, int address) {
     int hashValue;
 
+    // Generate hash from given symbol.
     hashValue = abs(int(getHash(symbol)) % SYMBOL_LIMIT);
 
+    // Check for a collision and increment hash until a blank element is found.
     while(table[hashValue] != NULL) {
         hashValue = (hashValue + 1) % SYMBOL_LIMIT;
     }
 
+    // Store symbol and address.
     table[hashValue] = new SymbolAddressPair(symbol, address);
 }
 
@@ -63,6 +67,7 @@ bool SymbolTable::contains(string symbol) {
         iterator++;
     }
 
+    // Return true if the symbol has been found.
     return table[hashValue] != NULL && table[hashValue]->getSymbol().compare(symbol) == 0;
 }
 
@@ -75,5 +80,6 @@ int SymbolTable::getAddress(string symbol) {
         hashValue = (hashValue + 1) % SYMBOL_LIMIT;
     }
 
+    // Return the address associated with the given symbol.
     return table[hashValue]->getAddress();
 }

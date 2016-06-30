@@ -15,6 +15,7 @@ class Parser {
 public:
     Parser(string& fileName);
     // Opens input file
+    // File is closed implicitly.
 
     bool hasMoreCommands();
     // Returns true if the file contains commands that still need to be parsed,
