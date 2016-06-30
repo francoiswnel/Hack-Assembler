@@ -63,4 +63,4 @@ For more information, visit: http://nand2tetris.org/
 
 # Download
 
-Coming soon.
+Get the [latest release](https://github.com/francoiswnel/Hack-Assembler/releases/latest).
