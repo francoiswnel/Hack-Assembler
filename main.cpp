@@ -57,9 +57,9 @@ int main(int argc, char *argv[]) {
     /*
      * First pass: Generate symbol table
      *  This is done by reading the input file line by line using the symbolSource parser,
-     *  and looking for pseudo instructions. If an a-instruction or c-instruction is encountered,
+     *  and looking for pseudo instructions. If an A-instruction or C-instruction is encountered,
      *  lineNumberROM is incremented, which ultimately corresponds to the program counter address
-     *  of the instructions in the ROM / .hack output file. If an l-instruction is encountered
+     *  of the instructions in the ROM / .hack output file. If an L-instruction is encountered
      *  and it does not already exist in the symbol table, the symbol and the current
      *  program counter address is stored in the symbol table.
      */
@@ -89,10 +89,10 @@ int main(int argc, char *argv[]) {
     /*
      * Second pass: Assemble machine code
      *  With the symbol table generated, we read the file line by line once more,
-     *  this time using the assemblySource parser. Since the l-instructions have been dealt with,
-     *  we are only looking for a-instructions and c-instructions.
+     *  this time using the assemblySource parser. Since the L-instructions have been dealt with,
+     *  we are only looking for A-instructions and C-instructions.
      *
-     *  If an a-instruction is encountered, the address can either be a number,
+     *  If an A-instruction is encountered, the address can either be a number,
      *  a predefined symbol, or a user defined variable. If the address is a number,
      *  the string is converted to its numeric representation in decimal,
      *  which is then converted to binary and output to the file.
@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
      *  retrieved if it is a predefined symbol, or generated if it is a user defined variable,
      *  and this address is then converted into binary and output to the file.
      *
-     *  If a c-instruction is encountered, the destination, computation and jump mnemonics
+     *  If a C-instruction is encountered, the destination, computation and jump mnemonics
      *  are converted into binary code using the translator, and the resulting bit string
      *  is output to the file.
      */
@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
         }
 
         if (assemblySource.commandType() == 'A') {
-            fout << '0';    // a-instructions always start with '0'.
+            fout << '0';    // A-instructions always start with '0'.
 
             // Check if the symbol is a number.
             if (assemblySource.symbol().find_first_not_of("0123456789") == string::npos) {
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
             fout << endl;
         }
         else if (assemblySource.commandType() == 'C') {
-            fout << "111";  // c-instructions always start with "111".
+            fout << "111";  // C-instructions always start with "111".
             fout << translator.comp(assemblySource.compM(), lineNumberSource);
             fout << translator.dest(assemblySource.destM());
             fout << translator.jump(assemblySource.jumpM());
