@@ -70,11 +70,11 @@ string Parser::symbol() {
     openBracketPos = currentCommand.find('(');
     closeBracketPos = currentCommand.find(')');
 
-    // a-instruction: return everything after the '@' character.
+    // A-instruction: return everything after the '@' character.
     if (commandType() == 'A') {
         return currentCommand.substr(1, currentCommand.length() - 1);
     }
-    // l-instruction: return everything in between the '(' and ')' characters.
+    // L-instruction: return everything in between the '(' and ')' characters.
     else if (openBracketPos != string::npos && closeBracketPos != string::npos) {
         return currentCommand.substr(openBracketPos + 1, closeBracketPos - openBracketPos - 1);
     }

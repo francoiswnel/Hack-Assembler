@@ -29,9 +29,9 @@ public:
 
     char commandType();
     // Returns the type of the current command.
-    // Returns 'A' for an a command.
-    // Returns 'C' for a c command.
-    // Returns 'L' for a symbol/pseudo command.
+    // Returns 'A' for an A-instruction.
+    // Returns 'C' for a C-instruction.
+    // Returns 'L' for a label.
 
     string symbol();
     // Returns the symbol or decimal value of the current command.
