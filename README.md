@@ -1,11 +1,11 @@
 # Hack Assembler
 `chasm` is an assembler for the Hack language implemented in C++.
 
-Since the Hack assembly language is very simple, the assembler is little more than a string processor which can also handle a few pseudo instructions, namely variables and locations. Even so, I have documented the code fairly verbosely so that anyone can glance at it and understand what it is doing.
+Since the Hack assembly language is very simple, the assembler is little more than a string processor which can also handle a few pseudo instructions, namely variables and labels. Even so, I have documented the code fairly verbosely so that anyone can glance at it and understand what it is doing.
 
 # Examples of Hack assembly instructions
 
-Here's a simple program that determines the larger number of two given numbers, authored by Shimon Schocken and Noam Nisan, the creators of the Hack language and computer architecture.
+Here's an example program that determines the larger number of two given numbers, authored by Shimon Schocken and Noam Nisan, the creators of the Hack language and computer architecture.
 
     // This file is part of www.nand2tetris.org
     // and the book "The Elements of Computing Systems"
@@ -34,7 +34,9 @@ Here's a simple program that determines the larger number of two given numbers, 
       @INFINITE_LOOP
       0;JMP            // infinite loop
 
-There are three instruction formats, A-instructions, C-instructions and L-instructions. A-instructions are addressing instructions, and start with an '@', followed by either a direct address, a location, or a variable. For example:
+There are only three instruction formats: A-instructions, C-instructions and L-instructions. 
+
+A-instructions are addressing instructions, and start with an '@', followed by either a direct address, a location, or a variable. For example:
 
 * `@100`
 * `@LOCATION`
@@ -51,7 +53,7 @@ L-instructions, or labels, are psuedo commands only used by the assembler to det
 
 * `(LOOP)`
 * `(END)`
-* `(OUTPUT_D)`
+* `(JUMP_HERE)`
 
 # Usage
 
