@@ -55,7 +55,7 @@ L-instructions, or labels, are psuedo commands only used by the assembler to det
 * `(END)`
 * `(JUMP_HERE)`
 
-For more information, please visit: http://nand2tetris.org/
+For more information, visit: http://nand2tetris.org/
 
 # Usage
 
