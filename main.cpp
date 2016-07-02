@@ -29,9 +29,9 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     string inputFileName, outputFileName;
-    ofstream fout;
     int lineNumberROM, newAddress;
     unsigned long lineNumberSource;
+    ofstream fout;
 
     // Get the input and output file names, and provide usage instructions
     //  if too few or too many arguments are provided.
@@ -42,6 +42,7 @@ int main(int argc, char *argv[]) {
     else {
         inputFileName = argv[1];
         outputFileName = inputFileName.substr(0, inputFileName.length() - 4) + ".hack";
+
         if (argc == 3) {
             outputFileName = argv[2];
         }
@@ -49,6 +50,7 @@ int main(int argc, char *argv[]) {
 
     // Create the output file
     fout.open(outputFileName);
+
     if (fout.fail()) {
         cout << "Failed to create output file." << endl;
         exit(1);
@@ -108,8 +110,8 @@ int main(int argc, char *argv[]) {
     Parser assemblySource(inputFileName);
     CodeTranslator translator;
 
-    lineNumberSource = 0; // Reset the line number for the error handling.
-    newAddress = 16;    // Predefined symbols occupy addresses 0-15.
+    lineNumberSource = 0;   // Reset the line number for the error handling.
+    newAddress = 16;        // Predefined symbols occupy addresses 0-15.
 
     while (true) {
         assemblySource.advance(lineNumberSource);
@@ -139,8 +141,8 @@ int main(int argc, char *argv[]) {
         else if (assemblySource.commandType() == 'C') {
             fout << "111";  // C-instructions always start with "111".
             fout << translator.comp(assemblySource.compM(), lineNumberSource);
-            fout << translator.dest(assemblySource.destM());
-            fout << translator.jump(assemblySource.jumpM());
+            fout << translator.dest(assemblySource.destM(), lineNumberSource);
+            fout << translator.jump(assemblySource.jumpM(), lineNumberSource);
             fout << endl;
         }
     }
