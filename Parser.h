@@ -7,7 +7,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -27,11 +29,12 @@ public:
     // Line number is incremented for each line read,
     //  and is used for error information.
 
-    char commandType();
+    char commandType(unsigned long& lineNr);
     // Returns the type of the current command.
     // Returns 'A' for an A-instruction.
     // Returns 'C' for a C-instruction.
     // Returns 'L' for a label.
+    // Line number is used for error information.
 
     string symbol();
     // Returns the symbol or decimal value of the current command.
@@ -51,6 +54,7 @@ public:
 private:
     ifstream fin;
     string currentCommand;
+    map<char, char> commandTable;
 };
 
 #endif //HACK_ASSEMBLER_PARSER_H
