@@ -79,11 +79,11 @@ int main(int argc, char *argv[]) {
             break;
         }
 
-        if (symbolSource.commandType() == 'A' || symbolSource.commandType() == 'C') {
+        if (symbolSource.commandType(lineNumberSource) == 'A' || symbolSource.commandType(lineNumberSource) == 'C') {
             lineNumberROM++;
         }
 
-        if (symbolSource.commandType() == 'L' && !symbolTable.contains(symbolSource.symbol())) {
+        if (symbolSource.commandType(lineNumberSource) == 'L' && !symbolTable.contains(symbolSource.symbol())) {
             symbolTable.addEntry(symbolSource.symbol(), lineNumberROM);
         }
     }
@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
             break;
         }
 
-        if (assemblySource.commandType() == 'A') {
+        if (assemblySource.commandType(lineNumberSource) == 'A') {
             fout << '0';    // A-instructions always start with '0'.
 
             // Check if the symbol is a number.
@@ -138,7 +138,7 @@ int main(int argc, char *argv[]) {
             }
             fout << endl;
         }
-        else if (assemblySource.commandType() == 'C') {
+        else if (assemblySource.commandType(lineNumberSource) == 'C') {
             fout << "111";  // C-instructions always start with "111".
             fout << translator.comp(assemblySource.compM(), lineNumberSource);
             fout << translator.dest(assemblySource.destM(), lineNumberSource);

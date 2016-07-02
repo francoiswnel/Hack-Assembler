@@ -2,7 +2,6 @@
  * Created by Francois W. Nel on 27 Jun 2016.
  */
 
-#include <string>
 #include "Parser.h"
 
 using namespace std;
@@ -14,6 +13,17 @@ Parser::Parser(string& fileName) {
         cout << fileName << " not found." << endl;
         exit(1);
     }
+
+    // Populate the command map table.
+    commandTable['@'] = 'A';
+    commandTable['A'] = 'C';
+    commandTable['D'] = 'C';
+    commandTable['M'] = 'C';
+    commandTable['0'] = 'C';
+    commandTable['1'] = 'C';
+    commandTable['-'] = 'C';
+    commandTable['!'] = 'C';
+    commandTable['('] = 'L';
 }
 
 bool Parser::hasMoreCommands() {
@@ -47,22 +57,14 @@ void Parser::advance(unsigned long& lineNr) {
     currentCommand = currentLine;
 }
 
-char Parser::commandType() {
-    switch(toupper(currentCommand[0])) {
-        case '@':
-            return 'A';
-        case 'A':
-        case 'D':
-        case 'M':
-        case '0':
-        case '1':
-        case '-':
-        case '!':
-            return 'C';
-        case '(':
-        default:
-            return 'L';
+char Parser::commandType(unsigned long& lineNr) {
+    if (commandTable.find(currentCommand[0]) != commandTable.end()) {
+        return commandTable[currentCommand[0]];
     }
+
+    // If an invalid command is found, output an error message and line number.
+    cout << "Invalid syntax at line: " << lineNr << endl;
+    exit(1);
 }
 
 string Parser::symbol() {
@@ -72,7 +74,7 @@ string Parser::symbol() {
     closeBracketPos = currentCommand.find(')');
 
     // A-instruction: return everything after the '@' character.
-    if (commandType() == 'A') {
+    if (currentCommand[0] == '@') {
         return currentCommand.substr(1, currentCommand.length() - 1);
     }
     // L-instruction: return everything in between the '(' and ')' characters.
