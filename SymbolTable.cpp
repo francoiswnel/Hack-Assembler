@@ -4,82 +4,49 @@
 
 #include "SymbolTable.h"
 
-const int SYMBOL_LIMIT = 1000;
-
 using namespace std;
 
 SymbolTable::SymbolTable() {
-    table = new SymbolAddressPair*[SYMBOL_LIMIT];
-
-    for (int i = 0; i < SYMBOL_LIMIT; i++) {
-        table[i] = NULL;
-    }
-
     // Populate the table with predefined symbols.
-    addEntry("SP", 0);
-    addEntry("LCL", 1);
-    addEntry("ARG", 2);
-    addEntry("THIS", 3);
-    addEntry("THAT", 4);
-    addEntry("R0", 0);
-    addEntry("R1", 1);
-    addEntry("R2", 2);
-    addEntry("R3", 3);
-    addEntry("R4", 4);
-    addEntry("R5", 5);
-    addEntry("R6", 6);
-    addEntry("R7", 7);
-    addEntry("R8", 8);
-    addEntry("R9", 9);
-    addEntry("R10", 10);
-    addEntry("R11", 11);
-    addEntry("R12", 12);
-    addEntry("R13", 13);
-    addEntry("R14", 14);
-    addEntry("R15", 15);
-    addEntry("SCREEN", 16384);
-    addEntry("KBD", 24576);
+    symbolAddressTable["SP"] = 0;
+    symbolAddressTable["LCL"] = 1;
+    symbolAddressTable["ARG"] = 2;
+    symbolAddressTable["THIS"] = 3;
+    symbolAddressTable["THAT"] = 4;
+    symbolAddressTable["R0"] = 0;
+    symbolAddressTable["R1"] = 1;
+    symbolAddressTable["R2"] = 2;
+    symbolAddressTable["R3"] = 3;
+    symbolAddressTable["R4"] = 4;
+    symbolAddressTable["R5"] = 5;
+    symbolAddressTable["R6"] = 6;
+    symbolAddressTable["R7"] = 7;
+    symbolAddressTable["R8"] = 8;
+    symbolAddressTable["R9"] = 9;
+    symbolAddressTable["R10"] = 10;
+    symbolAddressTable["R11"] = 11;
+    symbolAddressTable["R12"] = 12;
+    symbolAddressTable["R13"] = 13;
+    symbolAddressTable["R14"] = 14;
+    symbolAddressTable["R15"] = 15;
+    symbolAddressTable["SCREEN"] = 16384;
+    symbolAddressTable["KBD"] = 24576;
 }
 
 void SymbolTable::addEntry(string symbol, int address) {
-    int hashValue;
-
-    // Generate hash from given symbol.
-    hashValue = abs(int(getHash(symbol)) % SYMBOL_LIMIT);
-
-    // Check for a collision and increment hash until a blank element is found.
-    while(table[hashValue] != NULL) {
-        hashValue = (hashValue + 1) % SYMBOL_LIMIT;
+    if (symbolAddressTable.find(symbol) == symbolAddressTable.end()) {
+        symbolAddressTable[symbol] = address;
     }
-
-    // Store symbol and address.
-    table[hashValue] = new SymbolAddressPair(symbol, address);
 }
 
 bool SymbolTable::contains(string symbol) {
-    int hashValue, iterator;
-
-    hashValue = abs(int(getHash(symbol)) % SYMBOL_LIMIT);
-    iterator = 0;
-
-    while(table[hashValue] != NULL && table[hashValue]->getSymbol().compare(symbol) != 0 && iterator < SYMBOL_LIMIT) {
-        hashValue = (hashValue + 1) % SYMBOL_LIMIT;
-        iterator++;
-    }
-
-    // Return true if the symbol has been found.
-    return table[hashValue] != NULL && table[hashValue]->getSymbol().compare(symbol) == 0;
+    return (symbolAddressTable.find(symbol) != symbolAddressTable.end());
 }
 
 int SymbolTable::getAddress(string symbol) {
-    int hashValue;
-
-    hashValue = abs(int(getHash(symbol)) % SYMBOL_LIMIT);
-
-    while(table[hashValue] != NULL && table[hashValue]->getSymbol().compare(symbol) != 0) {
-        hashValue = (hashValue + 1) % SYMBOL_LIMIT;
+    if (symbolAddressTable.find(symbol) != symbolAddressTable.end()) {
+        return symbolAddressTable[symbol];
     }
 
-    // Return the address associated with the given symbol.
-    return table[hashValue]->getAddress();
+    return 0;
 }

@@ -6,18 +6,15 @@
 #define HACK_ASSEMBLER_SYMBOLTABLE_H
 
 #include <iostream>
-#include <functional>
-#include "SymbolAddressPair.h"
+#include <map>
 
 using namespace std;
 
 class SymbolTable {
 public:
     SymbolTable();
-    // Creates a new empty symbol table,
-    //  and initialises it with the predefined symbols.
-    // The amount of symbols available is limited to 1000
-    // entries for practical reasons.
+    // Initialise the symbol address map table
+    //  with the predefined symbols.
 
     void addEntry(string symbol, int address);
     // Adds the pair (symbol, address) to the table.
@@ -29,8 +26,7 @@ public:
     int getAddress(string symbol);
     // Returns the address associated with the given symbol.
 private:
-    SymbolAddressPair **table;
-    hash<string> getHash;
+    map<string, int> symbolAddressTable;
 };
 
 #endif //HACK_ASSEMBLER_SYMBOLTABLE_H
