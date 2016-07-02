@@ -48,5 +48,6 @@ int SymbolTable::getAddress(string symbol) {
         return symbolAddressTable[symbol];
     }
 
+    // If the table does not contain the symbol.
     return 0;
 }

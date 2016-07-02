@@ -39,6 +39,8 @@ void Parser::advance(unsigned long& lineNr) {
 
     // Read lines until a command is found.
     while (!commandFound && getline(fin, currentLine)) {
+        // Increment the line number corresponding to the source file,
+        //  used for error tracking.
         lineNr++;
 
         // Remove whitespace.
