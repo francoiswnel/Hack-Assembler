@@ -23,3 +23,4 @@ chasm/Hack-Assembler-VS/Hack-Assembler-VS.vcxproj.filters
 *.user
 chasm/Release/chasm.iobj
 *.ipdb
+*.iobj
