@@ -10,6 +10,8 @@ set(SOURCE_FILES
     Parser.cpp
     Parser.h
     SymbolTable.cpp
-    SymbolTable.h SymbolAddressPair.cpp SymbolAddressPair.h)
+    SymbolTable.h
+    SymbolAddressPair.cpp
+    SymbolAddressPair.h)
 
 add_executable(chasm ${SOURCE_FILES})
